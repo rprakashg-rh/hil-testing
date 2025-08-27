@@ -64,15 +64,9 @@ def setup_function():
 
     model.compile()
     hil.load_model(COMPILED_MODEL_PATH, vhil_device=vhil_device)
+    hil.start_simulation()    
 
-
-def start_simulation():
-    model.load(filename=sch)
-    model.compile()
-    hil.load_model(file=cpd, vhil_device=True)
-    hil.start_simulation()
-
-def trigger_bb_fault():
+def trigger_bb_fault(setup_function):
     # Fault:
     fault_name = "FaultBB"
     hil.set_scada_input_value(fault_name + '.Fault select', 11)
